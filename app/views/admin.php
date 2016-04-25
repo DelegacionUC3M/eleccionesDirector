@@ -11,7 +11,7 @@
 			</div>
 		<ul id='preguntas' data-type="alumnos">
 				<?php
-				if(isset($alumnos)){
+				if(!isset($alumnos)){
 					foreach($alumnos as $pregunta){ ?>
 					<li class='pregunta'>
 						<form class="like" action="/debate/admin/" method="post">
