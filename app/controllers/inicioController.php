@@ -141,6 +141,8 @@ class inicioController extends Controller {
 	 * @return void
 	 */
 	function preguntasAction() {
+		$url = explode('/', $_SERVER["REQUEST_URI"]);
+		$_GET['type'] = explode('?',$url[3])[1];
 		$category = $_GET['type'];
 		header('Content-Type: application/json');
 		switch ($category) {

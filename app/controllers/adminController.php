@@ -57,6 +57,8 @@ class adminController extends Controller {
 			header('HTTP/1.0 401 Unauthorized');
 			echo json_encode(array());
 		} else {
+			$url = explode('/', $_SERVER["REQUEST_URI"]);
+			$_GET['type'] = explode('?',$url[3])[1];
 			$category = $_GET['type'];
 			switch ($category) {
 				case 'alumnos':
