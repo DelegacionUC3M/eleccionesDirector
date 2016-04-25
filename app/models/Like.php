@@ -25,7 +25,7 @@ class Like {
 	*/
 	public function save(){
 		$db = new DB;
-		$db->run("INSERT INTO 'like' (id_pregunta, uid, author, date) VALUES (?,?,?,NOW())",
+		$db->run("INSERT INTO "like" (id_pregunta, uid, author, date) VALUES (?,?,?,NOW())",
 				array($this->id_pregunta,$this->uid, $this->author));
 	}
 
@@ -37,7 +37,7 @@ class Like {
 	**/
 	public static function getLikes($id){
 		$db = new DB;
-		$db->run("SELECT * FROM 'like' WHERE id_pregunta=?", array($id));
+		$db->run("SELECT * FROM "like" WHERE id_pregunta=?", array($id));
 		$likes = $db->data();
 		return count($likes)+1;
 	}
@@ -52,7 +52,7 @@ class Like {
 
 	public static function isSetLike($author_id, $id_pregunta){
 		$db = new DB;
-		$db->run("SELECT * FROM 'like' WHERE uid=? AND id_pregunta=?", array($author_id,$id_pregunta));
+		$db->run("SELECT * FROM "like" WHERE uid=? AND id_pregunta=?", array($author_id,$id_pregunta));
 		$author = $db->data();
 		return (!empty($author)) ? true : false;
 	}
