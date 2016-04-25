@@ -25,10 +25,10 @@
 
         <script src="/debate/assets/js/main.js"></script>
         <?php
-            if ($view == 'inicio') {
+            if ($section == 'inicio') {
                 ?> 
                 <script>$(intervaloFrontal);</script>
-           <?php  } else if ($view == 'admin') {  ?> 
+           <?php  } else if ($section == 'admin') {  ?> 
                 <script>$(intervaloAdmin);</script>
            <?php  }
         ?>

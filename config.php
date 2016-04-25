@@ -8,19 +8,19 @@ define('ROL_USUARIO', 10);
 define('ROL_ADMIN', 100);
 
 // LDAP Parameters
-define('LDAP_HOST', '');
-define('LDAP_BASEDN', '');
-define('LDAP_IDFIELD', '');
-define('LDAP_NAMEFIELD', '');
-define('LDAP_MAILFIELD', '');
-define('LDAP_MAILALIASFIELD', '');
+define('LDAP_HOST', 'ldaps://ldap.uc3m.es');
+define('LDAP_BASE_DN', 'ou=Gente,o=Universidad Carlos III,c=es');
+define('LDAP_IDFIELD', 'uid');
+define('LDAP_NAMEFIELD', 'cn');
+define('LDAP_MAILFIELD', 'mail');
+define('LDAP_MAILALIASFIELD', 'uc3mcorreoalias');
 date_default_timezone_set('Europe/Madrid');
 
 /* SQL Parameters */
 define('SQL_HOST', 'localhost');
 define('SQL_DB', 'debate');
 define('SQL_DB_DELEGADOS', 'delegados');
-define('SQL_PASSWD', 'prueba');
+define('SQL_PASSWD', 'password');
 define('SQL_USER', 'debate');
-define('SQL_PORT', 3306);
+define('SQL_PORT', 5432);
 define('SQL_DRIVER', 'pgsql');

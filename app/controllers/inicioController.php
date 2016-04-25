@@ -12,11 +12,12 @@ class inicioController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function index() {
+	function indexAction() {
 		if ($this->security(false)) {
-			$this->panel();
+			$this->panelAction();
 		} else {
-			$this->render('inicio');
+			header('Location: /debate/inicio/login');
+			$this->render('inicio', array('section' => 'inicio'));
 		}
 	}
 
@@ -27,34 +28,37 @@ class inicioController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function login() {
+	function loginAction() {
 		if($this->security(false)) {
 			header('Location: /debate/inicio');
 		} else {
 			if(isset($_POST['nia']) && isset($_POST['password'])) {
-				$ldapUser = LDAP_Gateway::login($_POST['nia'],$_POST['password']);
 				try {
-					if($ldapUser) {
-						$user = new User($ldapUser->getUserId(), $ldapUser->getUserNameFormatted(), $ldapUser->getUserMail()
-							, $ldapUser->getDn());
-						$_SESSION['user'] = $user;
 
-						if(isset($_GET['url'])) {	
-							header('Location: ' . $_GET['url']);
+					$ldap = new LDAP;
+					$ldap->run('uid=' . $_POST['nia']);
+					$user = $ldap->data()[0];
+					$ldapUser = $ldap->login($user['dn'],$_POST['password']);
+
+					if($ldapUser) {
+						$user = new User($user['uid'][0], $user['cn'][0],$user['mail'][0], $user['dn']);
+						$_SESSION['user'] = $user;
+						if (isset($_GET['url'])) {
+							header('Location: '.$_GET['url']);
 						} else {
 							header('Location: /debate/inicio/panel');
 						}
 					} else {
 						$error = 'Usuario o contraseña incorrectos.';
-						$this->render('login', array('error'=>$error));
+						$this->render('login', array('section' => 'login','error'=>$error));
 					}
 
 				} catch (Exception $e) {
 					$error = 'Ha habido algun problema con la autenticacion. Inténtelo de nuevo, por favor.';
-					$this->render('login', array('error'=>$error));
+					$this->render('login', array('section' => 'login','error'=>$error));
 				}
 			} else {
-				$this->render('login');
+				$this->render('login', array('section' => 'login'));
 			}
 		}
 	}
@@ -65,7 +69,7 @@ class inicioController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function logout() {
+	function logoutAction() {
 		session_start();
 		session_destroy();
    		session_regenerate_id(true);
@@ -81,7 +85,7 @@ class inicioController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function panel() {
+	function panelAction() {
 		if(!$this->security(false)) header('Location: /debate/inicio');	
 		$preguntas = new Pregunta();
 		$likes = new Like();
@@ -137,7 +141,7 @@ class inicioController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function preguntas() {
+	function preguntasAction() {
 		$category = $_GET['type'];
 		header('Content-Type: application/json');
 		switch ($category) {

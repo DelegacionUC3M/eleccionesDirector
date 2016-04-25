@@ -12,11 +12,12 @@ class adminController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function index() {
+	function indexAction() {
 		if ($this->security(false)) {
-			$this->panel();
+			$this->panelAction();
 		} else {
-			$this->render('inicio');
+			header('Location: /debate/inicio/login');
+			$this->render('inicio', array('section' => 'inicio'));
 		}
 	}
 
@@ -26,7 +27,7 @@ class adminController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function panel() {
+	function panelAction() {
 		
 		if(!$this->security(false)) header('Location: /debate/inicio');	
 		$pregunta = new Pregunta();
@@ -51,7 +52,7 @@ class adminController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function preguntas() {
+	function preguntasAction() {
 		header('Content-Type: application/json');
 		if (!$this->security(false)) {
 			header('HTTP/1.0 401 Unauthorized');

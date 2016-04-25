@@ -22,5 +22,5 @@ define('SQL_DB', 'debate');
 define('SQL_DB_DELEGADOS', 'delegados');
 define('SQL_PASSWD', 'password');
 define('SQL_USER', 'debate');
-define('SQL_PORT', 3306);
+define('SQL_PORT', 5432);
 define('SQL_DRIVER', 'pgsql');

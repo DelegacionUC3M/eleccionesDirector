@@ -36,7 +36,7 @@
                         <a href="/debate/inicio/login">Entrar</a>
                     <?php } ?>
                 </div>
-                <a href="/debate/inicio"> <h1>Elecciones</h1> </a>
+                <a href="/debate"> <h1>Elecciones</h1> </a>
                 <a href="http://delegacion.uc3m.es" target="_blank"> <img src="/debate/assets/img/delegacion.png"> </a>
 
             </div>

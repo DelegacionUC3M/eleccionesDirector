@@ -17,7 +17,7 @@ class Controller {
 			return true;
 		}
 
-		if ($redirect) {
+		if ($redirect == true) {
 			header('Location: /debate/inicio/login?url='.urlencode($_SERVER['REQUEST_URI']));
 			die();
 		}
@@ -40,9 +40,9 @@ class Controller {
 		$title = isset($title) ? $title : 'Elecciones - Delegación UC3M';
 		$user = isset($_SESSION['user']) ? $_SESSION['user'] : NULL;
 
-		if ($view == 'inicio' || $view == 'login') {
-			$section = $view;
-		}
+		//if ($view == 'inicio' || $view == 'login') {
+		//	$section = $view;
+		//}
 
 		include ABSPATH . 'app/views/header.php';
 		include ABSPATH . 'app/views/' . $view . '.php';
