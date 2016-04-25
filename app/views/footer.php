@@ -24,9 +24,7 @@
         <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
         <script src="/debate/assets/js/main.js"></script>
-        <?php
-            if ($section == 'inicio') {
-                ?> 
+        <?php if ($section == 'inicio') { ?> 
                 <script>$(intervaloFrontal);</script>
            <?php  } else if ($section == 'admin') {  ?> 
                 <script>$(intervaloAdmin);</script>
