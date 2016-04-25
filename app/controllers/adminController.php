@@ -16,7 +16,6 @@ class adminController extends Controller {
 		if ($this->security(false)) {
 			$this->panelAction();
 		} else {
-			header('Location: /debate/inicio/login');
 			$this->render('inicio', array('section' => 'inicio'));
 		}
 	}
