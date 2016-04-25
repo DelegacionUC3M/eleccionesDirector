@@ -51,15 +51,13 @@ class adminController extends Controller {
 	 * 
 	 * @return void
 	 */
-	function preguntasAction() {
+	function preguntasAction($pepe) {
 		header('Content-Type: application/json');
 		if (!$this->security(false)) {
 			header('HTTP/1.0 401 Unauthorized');
 			echo json_encode(array());
 		} else {
-			$url = explode('/', $_SERVER["REQUEST_URI"]);
-			$_GET['type'] = explode('?',$url[3])[1];
-			$category = $_GET['type'];
+			$category = $pepe;
 			switch ($category) {
 				case 'alumnos':
 					echo json_encode(Pregunta::findByCategory('Alumnos'));

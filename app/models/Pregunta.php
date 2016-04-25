@@ -68,7 +68,7 @@ class Pregunta {
 	**/
 	public static function findByCategory($category){
 		$db = new DB;
-		$db->run('SELECT * FROM pregunta WHERE category=? ORDER BY likes DESC' , array($category));
+		$db->run('SELECT * FROM pregunta WHERE category="?" ORDER BY likes DESC' , array($category));
 		$data = $db->data();
 		$debate = array();
 		foreach($data as $row){
@@ -90,7 +90,7 @@ class Pregunta {
 	**/
 	public static function findByCategoryF($category){
 		$db = new DB;
-		$db->run('SELECT text,likes FROM pregunta WHERE category=? ORDER BY likes DESC LIMIT 10', array($category));
+		$db->run('SELECT text,likes FROM pregunta WHERE category="?" ORDER BY likes DESC LIMIT 10', array($category));
 		$data = $db->data();
 		$debate = array();
 		foreach($data as $row){
